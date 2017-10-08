@@ -46,7 +46,8 @@ public class AppConfig extends WebSecurityConfigurerAdapter  {
 		builder.userDetailsService(new SSUserDetailsService());
 		//	        builder.authenticationProvider(new CustomAuthenticationProvider());
 	}
-
+	
+	// try to command this bean, this will lead to invoke target controller two time ???
 	@Bean
 	public ViewResolver viewResolver() {
 		InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
