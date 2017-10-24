@@ -1,3 +1,10 @@
 # SpringMVCHibernateSecurity
 # Reference(guide, tutorial link)
-https://www.thepolyglotdeveloper.com/2016/07/create-a-mobile-app-from-your-angular-2-web-app-with-nativescript/
+CREATE TABLE EMPLOYEE(
+    id INT NOT NULL auto_increment, 
+    name VARCHAR(50) NOT NULL,
+    joining_date DATE NOT NULL,
+    salary DOUBLE NOT NULL,
+    ssn VARCHAR(30) NOT NULL UNIQUE,
+    PRIMARY KEY (id)
+);
