@@ -15,9 +15,9 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)
+//@EnableGlobalMethodSecurity(prePostEnabled = true)
 @EnableWebMvc
-@ComponentScan(basePackages = {"edu.java.self.controller", "edu.java.self.configuration"})
+@ComponentScan(basePackages = {"edu.java.self.controller", "edu.java.self.configuration","edu.java.self.service","edu.java.self.dao"})
 public class AppConfig extends WebSecurityConfigurerAdapter  {
 	//	@Override
 	//	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
@@ -39,14 +39,15 @@ public class AppConfig extends WebSecurityConfigurerAdapter  {
 		.and()
 		.formLogin();
 	}
-
+//
 	@Override
 	public void configure(AuthenticationManagerBuilder builder)
 			throws Exception {
 		builder.userDetailsService(new SSUserDetailsService());
 		//	        builder.authenticationProvider(new CustomAuthenticationProvider());
 	}
-
+	
+	// try to command this bean, this will lead to invoke target controller two time ???
 	@Bean
 	public ViewResolver viewResolver() {
 		InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
@@ -64,6 +65,7 @@ public class AppConfig extends WebSecurityConfigurerAdapter  {
 	//		resolver.setSuffix(".jsp");
 	//		return resolver;
 	//	}
+	
 	//	
 	//	@Bean
 	//	public TilesConfigurer tilesConfigure(){
