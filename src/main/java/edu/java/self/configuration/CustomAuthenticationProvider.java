@@ -1,3 +1,4 @@
+package edu.java.self.configuration;
 //package edu.java.self.configuration;
 //
 //import org.springframework.security.authentication.AuthenticationProvider;
