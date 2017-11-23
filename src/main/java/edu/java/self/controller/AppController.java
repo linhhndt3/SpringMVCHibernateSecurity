@@ -78,13 +78,13 @@ public class AppController {
 	}
 	
 	@RequestMapping("/them")
-//	@PreAuthorize("hasRole('ROLE_USER')")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public String them(HttpServletRequest request, Model model,@AuthenticationPrincipal UserInfo userInfo) {
 		//	        Authentication auth = SecurityContextHolder.getContext()
 		//	                                                   .getAuthentication();
 
-//		System.out.println("--------- already find resource");
-//		System.out.println("--------- user name: " + userInfo.getUsername() + " and password " + userInfo.getPassword() + " ");
+		System.out.println("--------- already find resource");
+		System.out.println("--------- user name: " + userInfo.getUsername() + " and password " + userInfo.getPassword() + " ");
 //		System.out.println("session: " + userInfo.getSessionId());
 //		System.out.println(request.getRequestURI());
 		//	        System.out.println(auth.getName());

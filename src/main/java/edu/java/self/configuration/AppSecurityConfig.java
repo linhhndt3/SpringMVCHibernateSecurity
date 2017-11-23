@@ -3,12 +3,15 @@ package edu.java.self.configuration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
@@ -32,12 +35,12 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter  {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests()
-		.antMatchers("/").hasRole("ADMIN")
-		.anyRequest()
-		.authenticated()
-		.and()
-		.formLogin();
+		http.csrf().disable();
+		http.authorizeRequests().antMatchers(HttpMethod.OPTIONS,"/api/auth/login").permitAll()
+			.anyRequest().authenticated()
+			.and()
+			.addFilterBefore(new LoginFilter(new AntPathRequestMatcher("/api/auth/login")), UsernamePasswordAuthenticationFilter.class)
+			.addFilterBefore(new AuthFilter(), UsernamePasswordAuthenticationFilter.class);
 	}
 //
 	@Override
@@ -84,4 +87,9 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter  {
 	//		return configure;
 	//	}
 	//	
+	
+	@Bean
+	public TokenAuthenticationService tokenAuthenticationService() {
+		return new TokenAuthenticationServiceImpl();
+	}
 }
