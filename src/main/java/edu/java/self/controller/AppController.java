@@ -53,13 +53,13 @@ public class AppController {
 
 	@RequestMapping("/")
 	@PreAuthorize("hasRole('ROLE_USER')")
-	public String handleRequest(HttpServletRequest request, Model model,@AuthenticationPrincipal UserInfo userInfo) {
+	public String handleRequest(HttpServletRequest request, Model model) {
 		//	        Authentication auth = SecurityContextHolder.getContext()
 		//	                                                   .getAuthentication();
 
 		System.out.println("--------- already find resource 24-10");
-		System.out.println("--------- user name: " + userInfo.getUsername() + " and password " + userInfo.getPassword() + " ");
-		System.out.println("session: " + userInfo.getSessionId());
+//		System.out.println("--------- user name: " + userInfo.getUsername() + " and password " + userInfo.getPassword() + " ");
+//		System.out.println("session: " + userInfo.getSessionId());
 		System.out.println(request.getRequestURI());
 		//	        System.out.println(auth.getName());
 		//	        System.out.println(auth.getAuthorities());
@@ -68,12 +68,12 @@ public class AppController {
 		//	             .addAttribute("user", auth.getName())
 		//	             .addAttribute("roles", auth.getAuthorities());
 		
-		Employee employee = new Employee();
-		employee.setName("name1336");
-		employee.setSalary(new BigDecimal("100000"));
-		employee.setSsn("abc1236");
-		
-		employeeService.saveEmployee(employee);
+//		Employee employee = new Employee();
+//		employee.setName("name1336");
+//		employee.setSalary(new BigDecimal("100000"));
+//		employee.setSsn("abc1236");
+//		
+//		employeeService.saveEmployee(employee);
 		return "my-page";
 	}
 	

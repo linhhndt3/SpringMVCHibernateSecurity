@@ -18,7 +18,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 //@EnableGlobalMethodSecurity(prePostEnabled = true)
 @EnableWebMvc
 @ComponentScan(basePackages = {"edu.java.self.controller", "edu.java.self.configuration","edu.java.self.service","edu.java.self.dao"})
-public class AppConfig extends WebSecurityConfigurerAdapter  {
+public class AppSecurityConfig extends WebSecurityConfigurerAdapter  {
 	//	@Override
 	//	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
 	//		System.out.println("enable config");
@@ -41,10 +41,20 @@ public class AppConfig extends WebSecurityConfigurerAdapter  {
 	}
 //
 	@Override
-	public void configure(AuthenticationManagerBuilder builder)
+	public void configure(AuthenticationManagerBuilder auth)
 			throws Exception {
-		builder.userDetailsService(new SSUserDetailsService());
-		//	        builder.authenticationProvider(new CustomAuthenticationProvider());
+		auth.userDetailsService(new SSUserDetailsService());
+		
+//		auth.inMemoryAuthentication()
+//                .withUser("ekansh")
+//                .password("password")
+//                .roles("USER", "ROLE");
+//        auth.inMemoryAuthentication()
+//                .withUser("admin")
+//                .password("admin")
+//                .roles("ADMIN");
+		
+		//	        auth.authenticationProvider(new CustomAuthenticationProvider());
 	}
 	
 	// try to command this bean, this will lead to invoke target controller two time ???
