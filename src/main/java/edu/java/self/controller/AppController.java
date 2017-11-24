@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import edu.java.self.configuration.UserAuthentication;
 import edu.java.self.configuration.UserInfo;
 import edu.java.self.model.Employee;
 import edu.java.self.service.EmployeeService;
@@ -79,12 +80,12 @@ public class AppController {
 	
 	@RequestMapping("/them")
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
-	public String them(HttpServletRequest request, Model model,@AuthenticationPrincipal UserInfo userInfo) {
+	public String them(HttpServletRequest request, Model model,@AuthenticationPrincipal UserAuthentication userAuthentication) {
 		//	        Authentication auth = SecurityContextHolder.getContext()
 		//	                                                   .getAuthentication();
 
-		System.out.println("--------- already find resource");
-		System.out.println("--------- user name: " + userInfo.getUsername() + " and password " + userInfo.getPassword() + " ");
+		System.out.println("--------- already find resource " + userAuthentication);
+		System.out.println("--------- user name: " + userAuthentication.getUser().getUsername());
 //		System.out.println("session: " + userInfo.getSessionId());
 //		System.out.println(request.getRequestURI());
 		//	        System.out.println(auth.getName());
@@ -94,12 +95,12 @@ public class AppController {
 		//	             .addAttribute("user", auth.getName())
 		//	             .addAttribute("roles", auth.getAuthorities());
 		
-		Employee employee = new Employee();
-		employee.setName("name13");
-		employee.setSalary(new BigDecimal("100000"));
-		employee.setSsn("abc1");
-		
-		employeeService.saveEmployee(employee);
+//		Employee employee = new Employee();
+//		employee.setName("name13");
+//		employee.setSalary(new BigDecimal("100000"));
+//		employee.setSsn("abc1");
+//		
+//		employeeService.saveEmployee(employee);
 		return "my-page";
 	}
 }

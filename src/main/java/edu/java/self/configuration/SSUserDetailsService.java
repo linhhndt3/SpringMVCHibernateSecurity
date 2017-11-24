@@ -31,9 +31,9 @@ public class SSUserDetailsService implements UserDetailsService {
 	private Set<GrantedAuthority> getAuthorities(){
 
 		Set<GrantedAuthority> authorities = new HashSet<GrantedAuthority>();
-		GrantedAuthority grantedAuthority1 = new SimpleGrantedAuthority("ROLE_ADMIN"); // check whether ADMIN or ROLE_ADMIN
+//		GrantedAuthority grantedAuthority1 = new SimpleGrantedAuthority("ROLE_ADMIN"); // check whether ADMIN or ROLE_ADMIN
 		GrantedAuthority grantedAuthority2 = new SimpleGrantedAuthority("ROLE_USER");
-		authorities.add(grantedAuthority1);
+//		authorities.add(grantedAuthority1);
 		authorities.add(grantedAuthority2);
 
 		return authorities;

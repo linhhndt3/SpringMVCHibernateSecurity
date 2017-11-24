@@ -18,7 +18,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
 @EnableWebSecurity
-//@EnableGlobalMethodSecurity(prePostEnabled = true)
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 @EnableWebMvc
 @ComponentScan(basePackages = {"edu.java.self.controller", "edu.java.self.configuration","edu.java.self.service","edu.java.self.dao"})
 public class AppSecurityConfig extends WebSecurityConfigurerAdapter  {
